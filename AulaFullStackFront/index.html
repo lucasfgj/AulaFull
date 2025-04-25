@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="./img/Logo.png" alt="Logo da empresa">
+        <h2>Cadastro de Usuarios</h2>
+
+        <form id="cadastroForm" action="">
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="password" name="senha" id="senha" placeholder="Senha" required>
+            <button type="button" onclick="cadastrarusuario()">Cadastrar</button>
+        </form>
+    </div>
+    <div id="mensagem" class="mensagem-oculto" onclick="fecharMensagem()"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
