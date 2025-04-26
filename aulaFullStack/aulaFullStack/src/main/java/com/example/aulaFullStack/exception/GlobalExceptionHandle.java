@@ -12,24 +12,34 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandle {
+
+
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Map<String, Object>> handlerRuntimeException(RuntimeException erro){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("Mensagem", "Ação invalida "));
+    public ResponseEntity<Map<String, Object>> handlerRuntimeException(RuntimeException erro) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("mensagem", erro.getMessage()));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, Object>> handlerIllegalArgumentException(IllegalArgumentException erro) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("mensagem", erro.getMessage()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, Object>> handlerMethodArgumentNotValidException(MethodArgumentNotValidException erro){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("Mensagem", "Ação não reconhecida favor tente novamente"));
-    }
-
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<Map<String, Object>> HttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException erro){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("Mensagem", "Recurso não encontrado"));
+    public ResponseEntity<Map<String, Object>> handlerMethodArgumentNotValidException(MethodArgumentNotValidException erro) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("mensagem", erro.getFieldErrors().get(0).getDefaultMessage()));
     }
 
     @ExceptionHandler(NoResourceFoundException.class)
-    public ResponseEntity<Map<String, Object>> NoResourceFoundException(NoResourceFoundException erro){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("Mensagem", "URL invalida ou incompleta, por favor corrigir e tentar novamente"));
+    public ResponseEntity<Map<String, Object>> handlerNoResourceFoundException(NoResourceFoundException erro) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("mensagem", erro.getMessage()));
     }
 
 }
