@@ -1,5 +1,6 @@
 package com.example.aulaFullStack.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -7,11 +8,15 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@Entity
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Nome é obrigatorio")
+    private String nome;
 
     @NotBlank(message = "O email é obrigatorio")
     @Email(message = "Deve ser um Email valido")
@@ -24,8 +29,9 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String email, String senha) {
+    public Usuario(Long id, String nome, String email, String senha) {
         this.id = id;
+        this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
@@ -36,6 +42,14 @@ public class Usuario {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public @NotBlank(message = "Nome é obrigatorio") String getNome() {
+        return nome;
+    }
+
+    public void setNome(@NotBlank(message = "Nome é obrigatorio") String nome) {
+        this.nome = nome;
     }
 
     public @NotBlank(message = "O email é obrigatorio") @Email(message = "Deve ser um Email valido") String getEmail() {

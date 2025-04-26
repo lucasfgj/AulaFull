@@ -8,7 +8,6 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
-
 @Service
 @Validated
 public class UsuarioService {
@@ -32,6 +31,7 @@ public class UsuarioService {
     public Usuario atualizar(@Valid Usuario usuario){
         Usuario usuarioAtualizar = usuarioRepository.findByEmail(usuario.getEmail()).orElseThrow(()-> new RuntimeException("Usuario não encontrado"));
 
+        usuarioAtualizar.setNome(usuario.getNome());
         usuarioAtualizar.setEmail(usuario.getEmail());
         usuarioAtualizar.setSenha(usuario.getSenha());
         return usuarioRepository.save(usuarioAtualizar);
