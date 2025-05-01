@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="StyleCadastro.css">
+</head>
+<body>
+    <div class="container">
+        <a href="./Welcome/welcome.html"><img src="/FrontExercicio/Logo/Logo.png" alt="Logo da empresa"></a>
+        
+        <h2>Cadastro de Usuarios</h2>
+
+        <form id="cadastroForm">
+
+            <input type="text" name="nome" id="nome" placeholder="Nome" required>
+            <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="password" name="senha" id="senha" placeholder="Senha" required>
+            <button type="button" onclick="cadastrarUsuario()">Cadastrar</button>
+        </form>
+
+        <a href="./Clientes/ListClientes.html" class="link-clientes">Ver Clientes cadastrados</a>
+    </div>
+    <div id="mensagem" class="mensagem oculto" onclick="fecharMensagem()"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
